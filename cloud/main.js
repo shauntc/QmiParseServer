@@ -45,18 +45,18 @@ Parse.Cloud.define("sendSilentNotification", function (request, response) {
 
 function sendPushNotification(installationQuery, data) {
     return new Promise((resolve, reject) => {
-        Parse.Push.send({
-                where: installationQuery,
-                data: data
-            }, {useMasterKey: true})
-            .then(result => {
-                // Push was successful
-                console.log(`sendPushNotification success ${result}`);
-                resolve(result);
-            })
-            .catch(error => {
-                console.log(`sendPushNotification error ${error.message}`);
-                reject(error);
-            });
-    });
+                       Parse.Push.send({
+                                       where: installationQuery,
+                                       data: data
+                                       }, {useMasterKey: true})
+                       .then(result => {
+                             // Push was successful
+                             console.log(`sendPushNotification success ${result}`);
+                             resolve(result);
+                             })
+                       .catch(error => {
+                              console.log(`sendPushNotification error ${error.message}`);
+                              reject(error);
+                              });
+                       });
 };
