@@ -23,6 +23,26 @@ Parse.Cloud.define("sendPushNotification", function (request, response) {
         .catch(error => response.error(error));
 });
 
+Parse.Cloud.define("sendSilentNotification", function (request, response) {
+                   
+                   // Create the push data
+                   const data = {
+                   alert: request.params.channel
+//                   content-available:1
+                   };
+                   
+                   
+                   
+                   // Create a query for all installations
+                   const installationQuery = new Parse.Query(Parse.Installation);
+                   installationQuery.equalTo('channels',request.paramas.channel)
+                   
+                   // Send the push notification to all installations
+                   sendPushNotification(installationQuery, data)
+                   .then(() => response.success())
+                   .catch(error => response.error(error));
+                   });
+
 function sendPushNotification(installationQuery, data) {
     return new Promise((resolve, reject) => {
         Parse.Push.send({
