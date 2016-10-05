@@ -11,7 +11,7 @@ Parse.Cloud.define("sendPushNotification", function (request, response) {
 
     // Create the push data
     const data = {
-        alert: "A notification is happening right now."
+        alert: request.params.AlertText
     };
 
     // Create a query for all installations
