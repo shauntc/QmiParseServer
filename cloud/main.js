@@ -35,7 +35,7 @@ Parse.Cloud.define("sendSilentNotification", function (request, response) {
                    
                    // Create a query for all installations
                    const installationQuery = new Parse.Query(Parse.Installation);
-                   installationQuery.equalTo("channels",request.paramas.channel);
+                   installationQuery.equalTo("channels",request.params.channel);
                    
                    // Send the push notification to all installations
                    sendPushNotification(installationQuery, data)
